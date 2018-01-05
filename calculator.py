@@ -11,38 +11,52 @@ from arithmetic import *
 while True:
     user_input = raw_input(">")
     tokens = user_input.split(" ")
-
+    list_operands = []
+    bad_operand = False
+    
     if tokens[0] == "q" or tokens[0] == "quit":
         break
     else:
-        try:
-            operand_1 = int(tokens[1])
-        except:
-            print "Operand 1 invalid"
-            break
-
-        if len(tokens) > 2:
+        for i in range(1, len(tokens)):
             try:
-                operand_2 = int(tokens[2])
+                operand = int(tokens[i])
             except:
-                print "Operand 2 invalid"
+                print "Invalid operand"
+                bad_operand = True
                 break
+            
+            list_operands.append(operand)    
 
-        if tokens[0] == "+":
-            print add(operand_1, operand_2)
-        elif tokens[0] == "-":
-            print subtract(operand_1, operand_2)
-        elif tokens[0] == "*":
-            print multiply(operand_1, operand_2)
-        elif tokens[0] == "/":
-            print divide(operand_1, operand_2)
-        elif tokens[0] == "square":
-            print square(operand_1)
-        elif tokens[0] == "cube":
-            print cube(operand_1)
-        elif tokens[0] == "pow":
-            print power(operand_1, operand_2)
-        elif tokens[0] == "mod":
-            print mod(operand_1, operand_2)
-        else:
-            print "Invalid input"
+        if not bad_operand:
+            if tokens[0] == "+":
+                print add(list_operands)
+            elif tokens[0] == "-":
+                print subtract(list_operands)
+            elif tokens[0] == "*":
+                print multiply(list_operands)
+            elif tokens[0] == "/":
+                print divide(list_operands)
+            elif tokens[0] == "square":
+                print square(list_operands)
+            elif tokens[0] == "cube":
+                print cube(list_operands)
+            elif tokens[0] == "pow":
+                print power(list_operands)
+            elif tokens[0] == "mod":
+                print mod(list_operands)
+            else:
+                print "Invalid input"
+
+
+# try:
+#             operand_1 = int(tokens[1])
+#         except:
+#             print "Operand 1 invalid"
+#             break
+
+#         if len(tokens) > 2:
+#             try:
+#                 operand_2 = int(tokens[2])
+#             except:
+#                 print "Operand 2 invalid"
+#                 break
